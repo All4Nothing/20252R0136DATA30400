@@ -1,0 +1,9 @@
+torch
+transformers
+sentence-transformers
+pandas
+networkx
+scikit-learn
+tqdm
+python-dotenv
+openai

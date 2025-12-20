@@ -1,0 +1,34 @@
+class_description_prompt = f"""
+            Task: Define the Amazon product category '{class_name}'.
+            Context:
+            - Parent Category: {parent_name}
+            - Sibling Categories (Distinct from): {sibling_str}
+            - Associated Keywords: {keyword_str}
+            
+            Write a sharp, 1-sentence definition focusing on visual/functional attributes 
+            that distinguish '{class_name}' from its siblings. 
+            Do NOT mention the class name directly in the beginning.
+            """
+
+augmentation_prompt = f"""
+        Act as a real Amazon customer writing a review.
+        Target Category: "{class_name}"
+        
+        Your goal is to generate {count} raw, authentic datasets that look exactly like the "Real Examples" below.
+        
+        --- REAL EXAMPLES (Mimic this style) ---
+        1. bigelow tea ( 6 pack ) the flavor of bigelow 's earl gray tea is the best i have ever tasted . sophisticated , smooth , and mellow , with just the right blend of bergamot . i drink this decaffeinated version every evening . wonderful !
+        2. vtech build discover workbench my son got this for christmas and he loves it ! there are lots of things to do , even for a 26 month old who ca n't quite follow the directions yet . he enjoys being able to turn the screws and bolts . my only complaint is that it has no volume control .
+        3. moisturizing shampoo from kenra 10 . 1 oz good price for a great product . it 's less expensive than buying in a store or shop . i also use the kenra conditioner .
+        ---------------------------------------
+
+        CRITICAL WRITING RULES:
+        1. **Variable Structure:** Do NOT use the same format for every line. Some product titles should be short, some long with specs (oz, pack, watts).
+        2. **Messy Titles:** Put specs like "10.1 oz" or "( 6 pack )" sometimes at the end, sometimes in the middle of the title.
+        3. **Diverse Content:** - Don't mention price ($) or shipping in every review. Focus on usage, smell, texture, family reaction, or specific pros/cons.
+           - Vary length! Write some short reviews (1 sentence) and some long detailed stories (3-4 sentences).
+        4. **Natural Tone:** Use lowercase. It's okay to be conversational. Use "i" instead of "I" sometimes.
+        5. **Spacing:** Try to put spaces before punctuation like " .", " ,", " !" to match the examples.
+        
+        Generate {count} reviews now (one per line, no numbering):
+        """
